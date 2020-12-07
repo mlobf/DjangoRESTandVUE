@@ -56,9 +56,9 @@ def manufacturer_detail(request, pk):
                 "name": manufacturer.name,
                 "location": manufacturer.location,
                 "active": manufacturer.active,
-                "products": list(manufacturer_products.values())
-
-            }}
+                "products": list(manufacturer_products.values()),
+            }
+        }
 
         response = JsonResponse(data)
 
