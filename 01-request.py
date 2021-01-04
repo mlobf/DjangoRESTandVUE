@@ -12,5 +12,6 @@ def main():
     print("JSON data: ", data)
 #### masi um tests
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
     main()
+'''
