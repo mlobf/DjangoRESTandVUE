@@ -69,6 +69,4 @@ def manufacturer_detail(request, pk):
             {"error": {"code": 404, "message": "Manufacturer not found!"}}, status=404
         )
 
-
-
     return response
