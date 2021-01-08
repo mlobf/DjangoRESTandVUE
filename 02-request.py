@@ -2,13 +2,10 @@ import requests
 
 
 def main():
-    payload = {"base": "USD","symbols": "GBP"}
-
-
+    payload = {"base": "USD", "symbols": "GBP"}
 
     response = requests.get(
-        "https://api.exchangeratesapi.io/latest?base=USD&symbols=GBP",
-        params=payload
+        "https://api.exchangeratesapi.io/latest?base=USD&symbols=GBP", params=payload
     )
 
     if response.status_code != 200:
@@ -17,8 +14,6 @@ def main():
 
     data = response.json()
     print("JSON data: ", data)
-
-## Test marcos
 
 
 if __name__ == "__main__":
