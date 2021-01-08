@@ -61,6 +61,7 @@ def manufacturer_detail(request, pk):
         }
 
         response = JsonResponse(data)
+        print(response)
 
     except Manufacturer.DoesNotExist:
 
