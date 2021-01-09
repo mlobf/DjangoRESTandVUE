@@ -1,12 +1,6 @@
 from rest_framework import serializers
 from news.models import Article
 
-"""
-    How it work's
-        Deserialization
-            1- Parse stream in to python native data type
-"""
-
 
 class ArticleSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -40,3 +34,14 @@ class ArticleSerializer(serializers.Serializer):
         instance.save()
 
         return instance
+
+    def validate(self, data):
+        """Check that description and title are different"""
+        if data["title"] == data["description"]:
+            raise serializers.ValidationError("Title and Description must be different from each other")
+        return data
+    
+    def validate_title(self, value):
+        if len(value) <60:
+            raise serializers.ValidationError("Title must be at least 60 characters long")
+        return value
