@@ -2,6 +2,23 @@ from rest_framework import serializers
 from news.models import Article
 
 
+class ArticleSerializer(serializers.ModelSerializer):
+
+    time_since_publication = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Article
+        # It has 3 ways to implement it.
+        # fields = "__all__" # We want all the fields of the model
+        # fields = ("title", "description", "boady") # Selecting which one if the fields will choose.
+        exclude = ("id",)
+
+    def get_time_since_publication(self, object):
+        pass
+
+
+
+"""
 class ArticleSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     author = serializers.CharField()
@@ -36,7 +53,6 @@ class ArticleSerializer(serializers.Serializer):
         return instance
 
     def validate(self, data):
-        """Check that description and title are different"""
         if data["title"] == data["description"]:
             raise serializers.ValidationError("Title and Description must be different from each other")
         return data
@@ -45,3 +61,4 @@ class ArticleSerializer(serializers.Serializer):
         if len(value) <60:
             raise serializers.ValidationError("Title must be at least 60 characters long")
         return value
+"""
