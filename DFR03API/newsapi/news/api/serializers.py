@@ -33,28 +33,10 @@ class ArticleSerializer(serializers.Serializer):
         instance.boady = validated_data.get("body", instance.boady)
         instance.location = validated_data.get("location", instance.location)
         instance.publication_data = validated_data.get(
-            "publication_date", instance.publication_date
+            "publication_data", instance.publication_data
         )
         instance.active = validated_data.get("active", instance.description)
 
         instance.save()
 
         return instance
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
