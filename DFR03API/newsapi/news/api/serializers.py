@@ -1,3 +1,5 @@
+from datetime import datetime
+from django.utils.timesince import timesince
 from rest_framework import serializers
 from news.models import Article
 
@@ -14,8 +16,22 @@ class ArticleSerializer(serializers.ModelSerializer):
         exclude = ("id",)
 
     def get_time_since_publication(self, object):
-        pass
+        publication_data = object.publication_data
+        now = datetime.now()
+        time_delta = timesince(publication_data, now)
+        return time_delta
 
+    def validate(self, data):
+        if data["title"] == data["description"]:
+            raise serializers.ValidationError(
+                "Title and Description must be different from each other")
+        return data
+
+    def validate_title(self, value):
+        if len(value) < 30:
+            raise serializers.ValidationError(
+                "Title must be at least 30 characters long")
+        return value
 
 
 """
