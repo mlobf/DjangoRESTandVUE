@@ -8,8 +8,8 @@ from rest_framework.generics import get_object_or_404
 from news.models import Article
 from news.api.serializers import ArticleSerializer
 
-
 @api_view(["GET", "POST"])
+
 def article_list_create_api_view(request):
 
     if request.method == "GET":
