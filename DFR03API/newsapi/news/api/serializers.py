@@ -1,12 +1,20 @@
 from datetime import datetime
 from django.utils.timesince import timesince
 from rest_framework import serializers
-from news.models import Article
+from news.models import Article, Journalist
+
+
+class JournalistSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Journalist
+        fields = "__all__"
 
 
 class ArticleSerializer(serializers.ModelSerializer):
 
     time_since_publication = serializers.SerializerMethodField()
+    author = JournalistSerializer()
 
     class Meta:
         model = Article
