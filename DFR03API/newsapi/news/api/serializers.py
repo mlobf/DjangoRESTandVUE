@@ -5,7 +5,6 @@ from news.models import Article, Journalist
 
 
 class JournalistSerializer(serializers.ModelSerializer):
-# Test
     class Meta:
         model = Journalist
         fields = "__all__"
