@@ -18,7 +18,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        # It has 3 ways to implement it.
+        # There is more that 3 ways to implement it.
         # fields = "__all__" # We want all the fields of the model
         # fields = ("title", "description", "boady") # Selecting which one if the fields will choose.
         exclude = ("id",)
