@@ -4,7 +4,6 @@ from rest_framework import serializers
 from news.models import Article, Journalist
 
 
-
 class JournalistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Journalist
@@ -28,7 +27,9 @@ class ArticleSerializer(serializers.ModelSerializer):
         now = datetime.now()
         time_delta = timesince(publication_data, now)
         return time_delta
-
+    # -------------------------------------------------------------------------------------------------------------------
+    # All the validation criteria can be done as was made previous using the serializer.Serializer
+    # -------------------------------------------------------------------------------------------------------------------
     def validate(self, data):
         if data["title"] == data["description"]:
             raise serializers.ValidationError(
