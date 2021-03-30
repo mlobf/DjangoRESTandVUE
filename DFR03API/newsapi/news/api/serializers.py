@@ -4,6 +4,7 @@ from rest_framework import serializers
 from news.models import Article, Journalist
 
 
+
 class JournalistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Journalist
