@@ -4,16 +4,10 @@ from rest_framework import serializers
 from news.models import Article, Journalist
 
 
-class JournalistSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Journalist
-        fields = "__all__"
-
-
 class ArticleSerializer(serializers.ModelSerializer):
 
     time_since_publication = serializers.SerializerMethodField()
-    author = JournalistSerializer()
+    #author = JournalistSerializer(read_only=True)
 
     class Meta:
         model = Article
@@ -30,6 +24,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     # -------------------------------------------------------------------------------------------------------------------
     # All the validation criteria can be done as was made previous using the serializer.Serializer
     # -------------------------------------------------------------------------------------------------------------------
+
     def validate(self, data):
         if data["title"] == data["description"]:
             raise serializers.ValidationError(
@@ -43,6 +38,14 @@ class ArticleSerializer(serializers.ModelSerializer):
                 "Title must be at least 30 characters long"
             )
         return value
+
+
+class JournalistSerializer(serializers.ModelSerializer):
+    article = ArticleSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Journalist
+        fields = "__all__"
 
 
 """
