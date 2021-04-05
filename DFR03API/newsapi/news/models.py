@@ -4,8 +4,8 @@ from django.db import models
 
 
 class Journalist(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=60)
+    last_name = models.CharField(max_length=60)
     biography = models.TextField(blank=True)
 
     def __str__(self):
