@@ -53,7 +53,8 @@ class JournalistListCreateAPIView(APIView):
 
     def get(self, request):
         journalists = Journalist.objects.all()
-        serializer = JournalistSerializer(journalists)
+        serializer = JournalistSerializer(journalists, many=True,
+                                          context={'request': request})
         return Response(serializer.data)
 
     def post(self, request):
@@ -64,6 +65,7 @@ class JournalistListCreateAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+'''
 @api_view(["GET", "POST"])
 def article_list_create_api_view(request):
 
@@ -104,3 +106,4 @@ def article_detail_api_view(request, pk):
     elif request.method == "DELETE":
         article.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+'''

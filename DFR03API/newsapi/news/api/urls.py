@@ -5,5 +5,7 @@ from news.api.views import ArticleDetailAPIView, ArticleListCreateAPIView, Journ
 urlpatterns = [
     path("articles/", ArticleListCreateAPIView.as_view(), name="article-list"),
     path("articles/<int:pk>/", ArticleDetailAPIView.as_view(), name="article-detail"),
-    path("journalists/", JournalistListCreateAPIView.as_view(),name="journalist-list")
+
+    path("journalists/", JournalistListCreateAPIView.as_view(),
+         name="journalist-list")
 ]
